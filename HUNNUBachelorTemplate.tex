@@ -1,0 +1,67 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8
+\documentclass{HUNNUthesis}
+\graphicspath{{images/}{figures/}}%可以有多个目录{{...},{...}}
+\setboolean{PicAndTabIndex}{false}%是否需要插图和列表索引,默认有图表索引(true)。
+\begin{document}
+%%%!=====下面是你需要填写的本科毕业模版封面相关信息=====
+%=====封皮页需要自己填写的内容
+% 标题样式 使用 \title{{}}; 使用时必须保证至少两个外侧括号
+%  如：短标题 \title{{第一行}},
+%      长标题 \title{{第一行}{第二行}}
+%      超长标题\tiitle{{第一行}{...}{第N行}}
+\title{{湖南师范大学本科生毕业设计模板}}%中文标题
+% 标题样式 使用 \entitle{{}}; 使用时必须保证至少两个外侧括号
+%  如：短标题 \entitle{{First row}},
+%      长标题 \entitle{{First row}{ Second row}}
+%      超长标题\entitle{{First row}{...}{ Next N row}}
+% 注意：英文标题多行时,需要在开头加个空格,防止摘要标题处英语单词粘连。
+\entitle{{The Template of HUNNU Design}{for undergraduate}}%英文标题
+\author{王老五}%论文作者
+\major{应用电子技术教育~~2016级}%专业、年级(年级前有空格)
+\enmajor{Electronic Technology Application Education 2016}%英文专业年级
+\enauthor{WANG Laowu}%英文姓名
+\advisor{李老师}%指导老师
+\college{工程与设计学院}%学院
+\serialnumber{201530184002}%学号
+\code{080202}%专业代码
+\submityear{二一}%提交年份二〇二〇就填二一
+\submitmonth{五}%提交月份
+%%!=========封面内容填写完成=============
+\maketitle%%生成封面
+\include{preface/statement}%诚信声明页;
+\frontmatter%关闭章节序号，页码使用罗马数字;
+\tableofcontents%生成目录
+%======插图索引和附表索引
+\ifthenelse{\boolean{PicAndTabIndex}}
+{
+	\renewcommand{\listfigurename}{插图索引}
+	\renewcommand{\listtablename}{附表索引}
+	\setcounter{lofdepth}{1}
+	\newcommand{\loflabel}{图~}
+	\renewcommand{\numberline}[1]{\songti\zihao{4}\loflabel~#1\hspace*{\baselineskip}}
+	\addcontentsline{toc}{chapter}{插图索引}
+	\listoffigures
+	\newcommand{\lotlabel}{表~}
+	\renewcommand{\numberline}[1]{\songti\zihao{4}\lotlabel~#1\hspace*{\baselineskip}}
+	\addcontentsline{toc}{chapter}{附表索引}
+	\listoftables
+}
+{
+}
+%%!======文章主体部分========
+\mainmatter%开启章节序号计数，重置页码，页码使用阿拉伯数字;
+\include{preface/abstract}%如果中英文摘要和目录一起罗马数字编页码，请把部分移到\mainmatter前
+\include{body/chapter1}%各个章节内容单独分开撰写，方便编译和组织;
+\include{body/chapter2}
+\include{body/chapter3}
+\include{body/chapter4}
+\include{body/chapter5}
+\include{body/conclusion}
+%=======论文后部========
+\backmatter
+\bibdatabase{references/reference}%参考文献数据库路径
+\printbib
+\include{appendix/acknowledgements}%致谢
+\include{appendix/appendix}%附录
+\end{document}
